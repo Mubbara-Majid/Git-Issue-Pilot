@@ -54,8 +54,16 @@ if st.button("Analyze Issue"):
             prompt = f"Answer this question briefly: {issue_text}"
 
         input_ids = t5_tokenizer(prompt, return_tensors="pt").input_ids
-        outputs = t5_model.generate(input_ids, max_length=60, num_beams=4, early_stopping=True)
+        
+        outputs = t5_model.generate(
+            input_ids, 
+            max_length=200,         
+            num_beams=4, 
+            early_stopping=True,
+            repetition_penalty=2.5,  
+            length_penalty=1.0
+        )
         response = t5_tokenizer.decode(outputs[0], skip_special_tokens=True)
 
         st.subheader("2. AI Suggested Reply")
-        st.code(response, language='markdown')
+        st.info(response)
