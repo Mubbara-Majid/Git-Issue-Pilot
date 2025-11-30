@@ -1,4 +1,3 @@
-````markdown
 # 🤖 Git-Issue-Pilot
 ### Intelligent DevOps Automation: Bug Classification & Fix Suggestions
 
@@ -33,14 +32,13 @@
 
 ## 📂 Project Structure
 
-```bash
 Git-Issue-Pilot/
 ├── app.py                                # Main Streamlit Application (Frontend)
 ├── SP23_BAI_027_NLP_SemesterProject.ipynb # Experimentation Notebook (Training & Eval)
 ├── requirements.txt                      # Project Dependencies
 ├── README.md                             # Documentation
 └── .gitignore                            # Ignored files (models, cache)
-````
+
 
 -----
 
