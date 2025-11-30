@@ -1,4 +1,3 @@
-````markdown
 # 🤖 Git-Issue-Pilot
 ### Intelligent DevOps Automation: Bug Classification & Fix Suggestions
 
@@ -40,7 +39,7 @@ Git-Issue-Pilot/
 ├── requirements.txt                      # Project Dependencies
 ├── README.md                             # Documentation
 └── .gitignore                            # Ignored files (models, cache)
-````
+```
 
 -----
 
