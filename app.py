@@ -46,23 +46,22 @@ if st.button("Analyze Issue"):
             st.info(f"Category: {prediction}")
 
         if predicted_class_id == 0: 
-            # "Explain error" works better than "Suggest fix" for T5-Base
-            prompt = f"Explain this python error simply: {issue_text}"
-        elif predicted_class_id == 1: # Feature
-            prompt = f"Write a polite sentence thanking the user for this feature request: {issue_text}"
+            prompt = f"Explain the solution for this error: {issue_text}" # Changed prompt slightly
+        elif predicted_class_id == 1:
+            prompt = f"Write a polite acknowledgement for this feature request: {issue_text}"
         else: 
-            prompt = f"Answer this question briefly: {issue_text}"
+            prompt = f"Answer this question concisely: {issue_text}"
 
         input_ids = t5_tokenizer(prompt, return_tensors="pt").input_ids
         
         outputs = t5_model.generate(
             input_ids, 
-            max_length=200,         
+            max_length=200, 
             num_beams=4, 
             early_stopping=True,
-            repetition_penalty=2.5,  
-            length_penalty=1.0
+            no_repeat_ngram_size=2 
         )
+        
         response = t5_tokenizer.decode(outputs[0], skip_special_tokens=True)
 
         st.subheader("2. AI Suggested Reply")
