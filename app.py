@@ -6,7 +6,8 @@ st.set_page_config(page_title="Git-Issue-Pilot", page_icon="🤖", layout="cente
 
 @st.cache_resource
 def load_models():
-    bert_path = "./saved_bert_model" 
+    bert_path = "mubbara-majid/git-issue-pilot-model" 
+    
     bert_tokenizer = DistilBertTokenizerFast.from_pretrained(bert_path)
     bert_model = DistilBertForSequenceClassification.from_pretrained(bert_path)
 
