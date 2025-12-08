@@ -46,9 +46,10 @@ if st.button("Analyze Issue"):
         else:
             st.info(f"Category: {prediction}")
 
-        if predicted_class_id == 0: 
-            prompt = f"Explain the solution for this error: {issue_text}" # Changed prompt slightly
-        elif predicted_class_id == 1:
+        # 2. GENERATION (T5)
+        if predicted_class_id == 0: # Bug
+            prompt = f"Fix this error: {issue_text}"
+        elif predicted_class_id == 1: # Feature
             prompt = f"Write a polite acknowledgement for this feature request: {issue_text}"
         else: 
             prompt = f"Answer this question concisely: {issue_text}"
@@ -58,10 +59,12 @@ if st.button("Analyze Issue"):
         outputs = t5_model.generate(
             input_ids, 
             max_length=200, 
-            num_beams=4, 
-            early_stopping=True,
-            no_repeat_ngram_size=2 
+            do_sample=True,       
+            temperature=0.7,     
+            no_repeat_ngram_size=2,
+            early_stopping=True
         )
+        # -------------------------------
         
         response = t5_tokenizer.decode(outputs[0], skip_special_tokens=True)
 
